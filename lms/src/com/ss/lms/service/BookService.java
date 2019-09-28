@@ -39,6 +39,11 @@ public class BookService {
 		bookDao.update(book);
 	}
 	
+	public void delete(Book book) throws IOException {
+		
+		bookDao.delete(book);
+	}
+	
 	
 	private void validateBookRelations(Book book) 
 			throws EntityDoesNotExistException, IOException {
