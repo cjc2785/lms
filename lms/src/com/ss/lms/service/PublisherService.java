@@ -19,7 +19,12 @@ public class PublisherService {
 		this.publisherDao = publisherDao;
 	}
 
-	public void insert(Publisher publisher) throws IOException {
+	public void insert(Publisher publisher) 
+			throws DuplicateIdException, IOException {
+		
+		if(publisherDao.get(publisher.getId()).isPresent()) {
+			throw new DuplicateIdException();
+		}
 		
 		publisherDao.insert(publisher);
 	}

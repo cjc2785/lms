@@ -3,6 +3,7 @@ package com.ss.lms.controller;
 import com.ss.lms.view.PublisherView;
 import com.ss.lms.view.CategoryView;
 import com.ss.lms.entity.Publisher;
+import com.ss.lms.service.DuplicateIdException;
 import com.ss.lms.service.PublisherService;
 
 import java.util.List;
@@ -36,10 +37,10 @@ public class PublisherController implements PublisherView.Delegate {
 			try {
 				List<Publisher> publishers = service.getAll();
 				view.showMany(publishers);
+				categoryView.showWithReturnMessage();
 			} catch(IOException e) {
-				
+				throw new RuntimeException(e);
 			}
-			categoryView.showWithReturnMessage();
 			break;
 		case 4:
 			view.showSelectForUpdate();
@@ -53,20 +54,22 @@ public class PublisherController implements PublisherView.Delegate {
 	public void onInsert(Publisher publisher) {
 		try {
 			service.insert(publisher);
+			categoryView.showWithReturnMessage();
+		} catch(DuplicateIdException e) {
+			categoryView.showWithInsertDuplicateIdMessage();
 		} catch(IOException e) {
-			
+			throw new RuntimeException(e);
 		}
-		categoryView.showWithReturnMessage();
 	}
 	@Override
 	public void onSelectForQuery(int id) {
 		try {
 			Optional<Publisher> optPublisher = service.get(id);
 			view.showOne(optPublisher);
+			categoryView.showWithReturnMessage();
 		} catch(IOException e) {
-			
+			throw new RuntimeException(e);
 		}
-		categoryView.showWithReturnMessage();
 	}
 
 	@Override
@@ -74,18 +77,19 @@ public class PublisherController implements PublisherView.Delegate {
 		try {
 			Optional<Publisher> optPublisher = service.get(id);
 			view.showUpdate(optPublisher);
+			categoryView.showWithReturnMessage();
 		} catch(IOException e) {
-			
+			throw new RuntimeException(e);
 		}
 	}
 	@Override
 	public void onUpdate(Publisher publisher) {
 		try {
 			service.update(publisher);
+			categoryView.showWithReturnMessage();
 		} catch(IOException e) {
-			
+			throw new RuntimeException(e);
 		}
-		categoryView.showWithReturnMessage();
 	}
 	@Override
 	public void onDelete(int id) {
@@ -94,9 +98,9 @@ public class PublisherController implements PublisherView.Delegate {
 			if(optPublisher.isPresent()) {
 				service.delete(optPublisher.get());
 			}
+			categoryView.showWithReturnMessage();
 		} catch(IOException e) {
-			
+			throw new RuntimeException(e);
 		}
-		categoryView.showWithReturnMessage();
 	}
 }

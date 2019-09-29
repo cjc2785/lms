@@ -1,6 +1,7 @@
 package com.ss.lms.service;
 
 import java.io.IOException;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -18,7 +19,12 @@ public class AuthorService {
 	}
 	
 	
-	public void insert(Author author) throws IOException {
+	public void insert(Author author) 
+			throws DuplicateIdException, IOException {
+		
+		if(authorDao.get(author.getId()).isPresent()) {
+			throw new DuplicateIdException();
+		}
 		
 		authorDao.insert(author);
 	}

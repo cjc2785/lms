@@ -35,4 +35,23 @@ public class CategoryView implements View {
 		
 		show();
 	}
+	
+	public void showWithEntityDoesNotExist(String action, String entityName) {
+		System.out.println("Unable to " + action + ": No such " + entityName + " exists\n" + 
+				"Press enter to return to categories");
+		
+		View.nextLine();
+		
+		show();
+	}
+	
+	public void showWithInsertDuplicateIdMessage() {
+		
+		System.out.println("Unable to insert: IDs must be unique.\n" + 
+				"Press enter to return to categories");
+		
+		View.nextLine();
+		
+		show();
+	}
 }

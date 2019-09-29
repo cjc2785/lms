@@ -4,6 +4,7 @@ import com.ss.lms.view.BookView;
 import com.ss.lms.view.CategoryView;
 import com.ss.lms.entity.Book;
 import com.ss.lms.service.BookService;
+import com.ss.lms.service.DuplicateIdException;
 import com.ss.lms.service.EntityDoesNotExistException;
 
 import java.util.List;
@@ -36,10 +37,11 @@ public class BookController implements BookView.Delegate {
 			try {
 				List<Book> books = service.getAll();
 				view.showMany(books);
+				categoryView.showWithReturnMessage();
 			} catch(IOException e) {
-				
+				throw new RuntimeException(e);
 			}
-			categoryView.showWithReturnMessage();
+			
 			break;
 		case 4:
 			view.showSelectForUpdate();
@@ -52,22 +54,25 @@ public class BookController implements BookView.Delegate {
 	public void onInsert(Book book) {
 		try {
 			service.insert(book);
+			categoryView.showWithReturnMessage();
+		} catch(DuplicateIdException e) {
+			categoryView.showWithInsertDuplicateIdMessage();
 		} catch(EntityDoesNotExistException e) {
-			view.showEntityDoesNotExist(e.getEntity());
+			categoryView.showWithEntityDoesNotExist(
+					"insert", e.getEntity());
 		} catch(IOException e) {
-			
+			throw new RuntimeException(e);
 		}
-		categoryView.showWithReturnMessage();
 	}
 	@Override
 	public void onSelectForQuery(int id) {
 		try {
 			Optional<Book> optBook = service.get(id);
 			view.showOne(optBook);
+			categoryView.showWithReturnMessage();
 		} catch(IOException e) {
-			
+			throw new RuntimeException(e);
 		}
-		categoryView.showWithReturnMessage();
 	}
 
 	@Override
@@ -75,20 +80,22 @@ public class BookController implements BookView.Delegate {
 		try {
 			Optional<Book> optBook = service.get(id);
 			view.showUpdate(optBook);
+			categoryView.showWithReturnMessage();
 		} catch(IOException e) {
-			
+			throw new RuntimeException(e);
 		}
 	}
 	@Override
 	public void onUpdate(Book book) {
 		try {
 			service.update(book);
+			categoryView.showWithReturnMessage();
 		} catch(EntityDoesNotExistException e) {
-			view.showEntityDoesNotExist(e.getEntity());
+			categoryView.showWithEntityDoesNotExist(
+					"update", e.getEntity());
 		} catch(IOException e) {
-			
+			throw new RuntimeException(e);
 		}
-		categoryView.showWithReturnMessage();
 	}
 	@Override
 	public void onDelete(int id) {
@@ -97,9 +104,9 @@ public class BookController implements BookView.Delegate {
 			if(optBook.isPresent()) {
 				service.delete(optBook.get());
 			}
+			categoryView.showWithReturnMessage();
 		} catch(IOException e) {
-			
+			throw new RuntimeException(e);
 		}
-		categoryView.showWithReturnMessage();
 	}
 }

@@ -98,10 +98,6 @@ public class BookView implements View {
 		delegate.onInsert(new Book(id, name, author, publisher));
 	}
 	
-	public void showEntityDoesNotExist(String entityName) {
-		System.out.println("No such " + entityName + " exists");
-	}
-	
 	public void showDelete() {
 		
 		System.out.println("Enter a book id: ");

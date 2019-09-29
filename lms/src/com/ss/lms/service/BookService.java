@@ -21,8 +21,12 @@ public class BookService {
 	}
 
 	public void insert(Book book) 
-			throws EntityDoesNotExistException, IOException {
-			
+			throws DuplicateIdException, EntityDoesNotExistException, IOException {
+		
+		if(bookDao.get(book.getId()).isPresent()) {
+			throw new DuplicateIdException();
+		}
+		
 		validateBookRelations(book);
 	
 		bookDao.insert(book);

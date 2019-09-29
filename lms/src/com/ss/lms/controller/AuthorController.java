@@ -4,6 +4,7 @@ import com.ss.lms.view.AuthorView;
 import com.ss.lms.view.CategoryView;
 import com.ss.lms.entity.Author;
 import com.ss.lms.service.AuthorService;
+import com.ss.lms.service.DuplicateIdException;
 
 import java.util.List;
 import java.util.Optional;
@@ -36,10 +37,10 @@ public class AuthorController implements AuthorView.Delegate {
 			try {
 				List<Author> authors = service.getAll();
 				view.showMany(authors);
+				categoryView.showWithReturnMessage();
 			} catch(IOException e) {
-				
+				throw new RuntimeException(e);
 			}
-			categoryView.showWithReturnMessage();
 			break;
 		case 4:
 			view.showSelectForUpdate();
@@ -53,20 +54,23 @@ public class AuthorController implements AuthorView.Delegate {
 	public void onInsert(Author author) {
 		try {
 			service.insert(author);
+			categoryView.showWithReturnMessage();
+		} catch(DuplicateIdException e) {
+			categoryView.showWithInsertDuplicateIdMessage();
+			return;
 		} catch(IOException e) {
-			
+			throw new RuntimeException(e);
 		}
-		categoryView.showWithReturnMessage();
 	}
 	@Override
 	public void onSelectForQuery(int id) {
 		try {
 			Optional<Author> optAuthor = service.get(id);
 			view.showOne(optAuthor);
+			categoryView.showWithReturnMessage();
 		} catch(IOException e) {
-			
+			throw new RuntimeException(e);
 		}
-		categoryView.showWithReturnMessage();
 	}
 
 	@Override
@@ -74,19 +78,19 @@ public class AuthorController implements AuthorView.Delegate {
 		try {
 			Optional<Author> optAuthor = service.get(id);
 			view.showUpdate(optAuthor);
+			categoryView.showWithReturnMessage();
 		} catch(IOException e) {
-			
+			throw new RuntimeException(e);
 		}
-		categoryView.showWithReturnMessage();
 	}
 	@Override
 	public void onUpdate(Author author) {
 		try {
 			service.update(author);
+			categoryView.showWithReturnMessage();
 		} catch(IOException e) {
-			
+			throw new RuntimeException(e);
 		}
-		categoryView.showWithReturnMessage();
 	}
 	@Override
 	public void onDelete(int id) {
@@ -95,9 +99,9 @@ public class AuthorController implements AuthorView.Delegate {
 			if(optAuthor.isPresent()) {
 				service.delete(optAuthor.get());
 			}
+			categoryView.showWithReturnMessage();
 		} catch(IOException e) {
-			
+			throw new RuntimeException(e);
 		}
-		categoryView.showWithReturnMessage();
 	}
 }
