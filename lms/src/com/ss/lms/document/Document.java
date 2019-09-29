@@ -37,6 +37,10 @@ public class Document {
 				);
 		return lines;
 	}
+	
+	public void truncate() throws IOException {
+		save(List.of());
+	}
 
 	public void save(List<String> lines) throws IOException {
 
@@ -53,7 +57,6 @@ public class Document {
 
 
 	public void append(List<String> lines) throws IOException {
-
 
 		Files.write(
 				Paths.get(path),
