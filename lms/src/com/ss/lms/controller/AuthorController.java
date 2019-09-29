@@ -1,6 +1,7 @@
 package com.ss.lms.controller;
 
 import com.ss.lms.view.AuthorView;
+import com.ss.lms.view.CategoryView;
 import com.ss.lms.entity.Author;
 import com.ss.lms.service.AuthorService;
 
@@ -12,10 +13,13 @@ public class AuthorController implements AuthorView.Delegate {
 	
 
 	private AuthorView view;
+	private CategoryView categoryView;
 	private AuthorService service;
 	
-	public AuthorController(AuthorView view, AuthorService service) {
+	
+	public AuthorController(AuthorView view, CategoryView categoryView, AuthorService service) {
 		this.view = view;
+		this.categoryView = categoryView;
 		this.service = service;
 	}
 	
@@ -35,12 +39,14 @@ public class AuthorController implements AuthorView.Delegate {
 			} catch(IOException e) {
 				
 			}
+			categoryView.showWithReturnMessage();
 			break;
 		case 4:
 			view.showSelectForUpdate();
 			break;
 		case 5:
 			view.showDelete();
+			break;
 		}
 	}
 	@Override
@@ -50,6 +56,7 @@ public class AuthorController implements AuthorView.Delegate {
 		} catch(IOException e) {
 			
 		}
+		categoryView.showWithReturnMessage();
 	}
 	@Override
 	public void onSelectForQuery(int id) {
@@ -59,6 +66,7 @@ public class AuthorController implements AuthorView.Delegate {
 		} catch(IOException e) {
 			
 		}
+		categoryView.showWithReturnMessage();
 	}
 
 	@Override
@@ -69,6 +77,7 @@ public class AuthorController implements AuthorView.Delegate {
 		} catch(IOException e) {
 			
 		}
+		categoryView.showWithReturnMessage();
 	}
 	@Override
 	public void onUpdate(Author author) {
@@ -77,6 +86,7 @@ public class AuthorController implements AuthorView.Delegate {
 		} catch(IOException e) {
 			
 		}
+		categoryView.showWithReturnMessage();
 	}
 	@Override
 	public void onDelete(int id) {
@@ -88,5 +98,6 @@ public class AuthorController implements AuthorView.Delegate {
 		} catch(IOException e) {
 			
 		}
+		categoryView.showWithReturnMessage();
 	}
 }

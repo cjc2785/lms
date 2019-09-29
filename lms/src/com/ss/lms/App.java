@@ -36,11 +36,11 @@ public class App {
 		CategoryView categoryView = new CategoryView();
 		
 		AuthorController authorController = new AuthorController(
-				authorView, authorService);
+				authorView, categoryView, authorService);
 		BookController bookController = new BookController(
-				bookView, bookService);
+				bookView, categoryView, bookService);
 		PublisherController publisherController = new PublisherController(
-				publisherView, publisherService);
+				publisherView, categoryView, publisherService);
 		CategoryController categoryController = new CategoryController(
 				authorView, bookView, publisherView);
 		

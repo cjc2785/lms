@@ -1,6 +1,7 @@
 package com.ss.lms.controller;
 
 import com.ss.lms.view.PublisherView;
+import com.ss.lms.view.CategoryView;
 import com.ss.lms.entity.Publisher;
 import com.ss.lms.service.PublisherService;
 
@@ -11,11 +12,13 @@ import java.io.IOException;
 public class PublisherController implements PublisherView.Delegate {
 	
 	private PublisherView view;
+	private CategoryView categoryView;
 	private PublisherService service;
 	
 	
-	public PublisherController(PublisherView view, PublisherService service) {
+	public PublisherController(PublisherView view, CategoryView categoryView, PublisherService service) {
 		this.view = view;
+		this.categoryView = categoryView;
 		this.service = service;
 	}
 	
@@ -36,6 +39,7 @@ public class PublisherController implements PublisherView.Delegate {
 			} catch(IOException e) {
 				
 			}
+			categoryView.showWithReturnMessage();
 			break;
 		case 4:
 			view.showSelectForUpdate();
@@ -52,6 +56,7 @@ public class PublisherController implements PublisherView.Delegate {
 		} catch(IOException e) {
 			
 		}
+		categoryView.showWithReturnMessage();
 	}
 	@Override
 	public void onSelectForQuery(int id) {
@@ -61,6 +66,7 @@ public class PublisherController implements PublisherView.Delegate {
 		} catch(IOException e) {
 			
 		}
+		categoryView.showWithReturnMessage();
 	}
 
 	@Override
@@ -79,6 +85,7 @@ public class PublisherController implements PublisherView.Delegate {
 		} catch(IOException e) {
 			
 		}
+		categoryView.showWithReturnMessage();
 	}
 	@Override
 	public void onDelete(int id) {
@@ -90,5 +97,6 @@ public class PublisherController implements PublisherView.Delegate {
 		} catch(IOException e) {
 			
 		}
+		categoryView.showWithReturnMessage();
 	}
 }

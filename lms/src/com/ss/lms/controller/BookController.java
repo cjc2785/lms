@@ -1,6 +1,7 @@
 package com.ss.lms.controller;
 
 import com.ss.lms.view.BookView;
+import com.ss.lms.view.CategoryView;
 import com.ss.lms.entity.Book;
 import com.ss.lms.service.BookService;
 import com.ss.lms.service.EntityDoesNotExistException;
@@ -12,11 +13,13 @@ import java.io.IOException;
 public class BookController implements BookView.Delegate {
 	
 	private BookView view;
+	private CategoryView categoryView;
 	private BookService service;
 	
 	
-	public BookController(BookView view, BookService service) {
+	public BookController(BookView view, CategoryView categoryView, BookService service) {
 		this.view = view;
+		this.categoryView = categoryView;
 		this.service = service;
 	}
 	
@@ -36,6 +39,7 @@ public class BookController implements BookView.Delegate {
 			} catch(IOException e) {
 				
 			}
+			categoryView.showWithReturnMessage();
 			break;
 		case 4:
 			view.showSelectForUpdate();
@@ -53,6 +57,7 @@ public class BookController implements BookView.Delegate {
 		} catch(IOException e) {
 			
 		}
+		categoryView.showWithReturnMessage();
 	}
 	@Override
 	public void onSelectForQuery(int id) {
@@ -62,6 +67,7 @@ public class BookController implements BookView.Delegate {
 		} catch(IOException e) {
 			
 		}
+		categoryView.showWithReturnMessage();
 	}
 
 	@Override
@@ -82,6 +88,7 @@ public class BookController implements BookView.Delegate {
 		} catch(IOException e) {
 			
 		}
+		categoryView.showWithReturnMessage();
 	}
 	@Override
 	public void onDelete(int id) {
@@ -93,5 +100,6 @@ public class BookController implements BookView.Delegate {
 		} catch(IOException e) {
 			
 		}
+		categoryView.showWithReturnMessage();
 	}
 }

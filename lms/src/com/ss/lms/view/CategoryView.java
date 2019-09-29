@@ -26,4 +26,13 @@ public class CategoryView implements View {
 		int num = View.nextInt();
 		delegate.onCategorySelect(num);
 	}
+	
+	public void showWithReturnMessage() {
+		System.out.println("-----------------------------------------------------");
+		System.out.println("Action complete, press enter to return to categories");
+		
+		View.nextLine();
+		
+		show();
+	}
 }
