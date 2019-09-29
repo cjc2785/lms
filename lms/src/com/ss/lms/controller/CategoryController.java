@@ -19,7 +19,7 @@ public class CategoryController implements CategoryView.Delegate {
 	@Override
 	public void onCategorySelect(int num) {
 		
-		getViews()[num].show();
+		getViews()[num - 1].show();
 	}
 	
 	

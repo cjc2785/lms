@@ -23,7 +23,7 @@ public class CategoryView implements View {
 		
 		System.out.println(display);
 		
-		int num = View.scanner.nextInt();
+		int num = View.nextInt();
 		delegate.onCategorySelect(num);
 	}
 }

@@ -26,7 +26,7 @@ public class BookView implements View {
 	public void showSelectForQuery() {
 		
 		System.out.println("Enter a book id: ");
-		int id = View.scanner.nextInt();
+		int id = View.nextInt();
 		
 		delegate.onSelectForQuery(id);
 	}
@@ -54,7 +54,7 @@ public class BookView implements View {
 		String display = "Enter a book id: ";
 		System.out.println(display);
 		
-		int id = View.scanner.nextInt();
+		int id = View.nextInt();
 		delegate.onSelectForUpdate(id);
 	}
 	
@@ -70,13 +70,13 @@ public class BookView implements View {
 	
 	public void showUpdate(Book book) {
 		System.out.println("Enter a new name: ");
-		String name = View.scanner.nextLine();
+		String name = View.nextLine();
 			
 		System.out.println("Enter a new author id: ");
-		int author = View.scanner.nextInt();
+		int author = View.nextInt();
 			
 		System.out.println("Enter a new publisher id: ");
-		int publisher = View.scanner.nextInt();
+		int publisher = View.nextInt();
 		delegate.onUpdate(new Book(book.getId(), name, author, publisher));	
 	}
 	
@@ -84,16 +84,16 @@ public class BookView implements View {
 	public void showInsert() {
 		
 		System.out.println("Enter an id: ");
-		int id = View.scanner.nextInt();
+		int id = View.nextInt();
 		
 		System.out.println("Enter a name: ");
-		String name = View.scanner.nextLine();
+		String name = View.nextLine();
 		
 		System.out.println("Enter an author id: ");
-		int author = View.scanner.nextInt();
+		int author = View.nextInt();
 		
 		System.out.println("Enter a publisher id: ");
-		int publisher = View.scanner.nextInt();
+		int publisher = View.nextInt();
 		
 		delegate.onInsert(new Book(id, name, author, publisher));
 	}
@@ -105,7 +105,7 @@ public class BookView implements View {
 	public void showDelete() {
 		
 		System.out.println("Enter a book id: ");
-		int id = View.scanner.nextInt();
+		int id = View.nextInt();
 		
 		delegate.onDelete(id);
 	}
@@ -124,7 +124,7 @@ public class BookView implements View {
 		
 		System.out.println(display);
 		
-		int num = View.scanner.nextInt();
+		int num = View.nextInt();
 		delegate.onActionSelect(num);
 	}
 }

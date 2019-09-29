@@ -25,7 +25,7 @@ public class AuthorView implements View {
 	public void showSelectForQuery() {
 		
 		System.out.println("Enter an author id: ");
-		int id = View.scanner.nextInt();
+		int id = View.nextInt();
 		
 		delegate.onSelectForQuery(id);
 	}
@@ -51,7 +51,7 @@ public class AuthorView implements View {
 		String display = "Enter an author id: ";
 		System.out.println(display);
 		
-		int id = View.scanner.nextInt();
+		int id = View.nextInt();
 		delegate.onSelectForUpdate(id);
 	}
 	
@@ -70,7 +70,7 @@ public class AuthorView implements View {
 		
 		System.out.println("Enter a new name: ");
 		
-		String name = View.scanner.nextLine();
+		String name = View.nextLine();
 		
 		delegate.onUpdate(new Author(author.getId(), name));
 	}
@@ -78,10 +78,10 @@ public class AuthorView implements View {
 	public void showInsert() {
 		
 		System.out.println("Enter an id: ");
-		int id = View.scanner.nextInt();
+		int id = View.nextInt();
 		
 		System.out.println("Enter a name: ");
-		String name = View.scanner.nextLine();
+		String name = View.nextLine();
 		
 		delegate.onInsert(new Author(id, name));
 	}
@@ -91,7 +91,7 @@ public class AuthorView implements View {
 		String display = "Enter an author id: ";
 		System.out.println(display);
 		
-		int id = View.scanner.nextInt();
+		int id = View.nextInt();
 		delegate.onDelete(id);
 	}
 
@@ -107,7 +107,7 @@ public class AuthorView implements View {
 		
 		System.out.println(display);
 		
-		int num = View.scanner.nextInt();
+		int num = View.nextInt();
 		delegate.onActionSelect(num);
 	}
 }

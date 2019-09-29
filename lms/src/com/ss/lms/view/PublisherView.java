@@ -25,7 +25,7 @@ public class PublisherView implements View {
 	public void showSelectForQuery() {
 		
 		System.out.println("Enter a publisher id: ");
-		int id = View.scanner.nextInt();
+		int id = View.nextInt();
 		
 		delegate.onSelectForQuery(id);
 	}
@@ -52,7 +52,7 @@ public class PublisherView implements View {
 		String display = "Enter a publisher id: ";
 		System.out.println(display);
 		
-		int id = View.scanner.nextInt();
+		int id = View.nextInt();
 		delegate.onSelectForUpdate(id);
 	}
 	
@@ -70,10 +70,10 @@ public class PublisherView implements View {
 	public void showUpdate(Publisher publisher) {
 		
 		System.out.println("Enter a new name: ");
-		String name = View.scanner.nextLine();
+		String name = View.nextLine();
 		
 		System.out.println("Enter a new address: ");
-		String address = View.scanner.nextLine();
+		String address = View.nextLine();
 		
 		
 		delegate.onUpdate(new Publisher(publisher.getId(), name, address));
@@ -82,13 +82,13 @@ public class PublisherView implements View {
 	public void showInsert() {
 		
 		System.out.println("Enter an id: ");
-		int id = View.scanner.nextInt();
+		int id = View.nextInt();
 		
 		System.out.println("Enter a name: ");
-		String name = View.scanner.nextLine();
+		String name = View.nextLine();
 		
 		System.out.println("Enter an address: ");
-		String address = View.scanner.nextLine();
+		String address = View.nextLine();
 		
 		delegate.onInsert(new Publisher(id, name, address));
 	}
@@ -96,7 +96,7 @@ public class PublisherView implements View {
 	public void showDelete() {
 		
 		System.out.println("Enter an id: ");
-		int id = View.scanner.nextInt();
+		int id = View.nextInt();
 		
 		delegate.onDelete(id);
 	}
@@ -113,7 +113,7 @@ public class PublisherView implements View {
 		
 		System.out.println(display);
 		
-		int num = View.scanner.nextInt();
+		int num = View.nextInt();
 		delegate.onActionSelect(num);
 	}
 }
