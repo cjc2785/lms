@@ -17,7 +17,7 @@ import com.ss.lms.entity.Author;
 import com.ss.lms.service.AuthorService;
 import com.ss.lms.service.DuplicateIdException;
 
-class AuthorServiceTest {
+public class AuthorServiceTest {
 
 	
 	@BeforeEach
@@ -35,7 +35,7 @@ class AuthorServiceTest {
 	}
 	
 	@Test
-	void insertAddsNewAuthor() 
+	void insertShouldAddNewAuthor() 
 			throws IOException, DuplicateIdException {
 		
 		Document authorFile = new Document("lmsdatatest/author.txt");
@@ -64,7 +64,7 @@ class AuthorServiceTest {
 	
 	
 	@Test
-	void insertThrowsWhenAddingDuplicateId() throws IOException {
+	void insertShouldThrowWhenAddingDuplicateId() throws IOException {
 		
 		Document authorFile = new Document("lmsdatatest/author.txt");
 		Document bookFile = new Document("lmsdatatest/book.txt");
@@ -89,7 +89,7 @@ class AuthorServiceTest {
 	}
 	
 	@Test
-	void updateSetsAuthorName() throws IOException {
+	void updateShouldSetAuthorName() throws IOException {
 		
 		Document authorFile = new Document("lmsdatatest/author.txt");
 		Document bookFile = new Document("lmsdatatest/book.txt");
@@ -116,7 +116,7 @@ class AuthorServiceTest {
 	}
 	
 	@Test
-	void deleteRemovesAuthor() throws IOException {
+	void deleteShouldRemoveAuthor() throws IOException {
 		
 		Document authorFile = new Document("lmsdatatest/author.txt");
 		Document bookFile = new Document("lmsdatatest/book.txt");
@@ -147,7 +147,7 @@ class AuthorServiceTest {
 	}
 	
 	@Test 
-	void deleteRemovesBooksByAuthor() throws IOException {
+	void deleteShouldRemoveBooksByAuthor() throws IOException {
 		
 		Document authorFile = new Document("lmsdatatest/author.txt");
 		Document bookFile = new Document("lmsdatatest/book.txt");
