@@ -8,9 +8,14 @@ import com.ss.lms.dao.*;
 import com.ss.lms.entity.*;
 
 public class AuthorService {
-	
+
 	private AuthorDao authorDao;
 	private BookDao  bookDao;
+	
+	public AuthorService(AuthorDao authorDao, BookDao bookDao) {
+		this.authorDao = authorDao;
+		this.bookDao = bookDao;
+	}
 	
 	
 	public void insert(Author author) throws IOException {

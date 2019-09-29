@@ -1,20 +1,30 @@
 package com.ss.lms.document;
 
 import java.util.List;
+
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.StandardOpenOption;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
 
-class Document {
+public class Document {
 
 	private String path;
 
 
 	public Document(String docPath) {
 		path = docPath;
+	}
+	
+	public void createIfNotExists() throws IOException {
+		try {
+			Files.createFile(Paths.get(path));
+		} catch(FileAlreadyExistsException e) {
+			
+		}
 	}
 
 	public List<String> getLines() throws IOException {

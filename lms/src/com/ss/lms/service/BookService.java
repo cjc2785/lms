@@ -14,6 +14,12 @@ public class BookService {
 	private PublisherDao publisherDao;
 	
 	
+	public BookService(AuthorDao authorDao, BookDao bookDao, PublisherDao publisherDao) {
+		this.authorDao = authorDao;
+		this.bookDao = bookDao;
+		this.publisherDao = publisherDao;
+	}
+
 	public void insert(Book book) 
 			throws EntityDoesNotExistException, IOException {
 			

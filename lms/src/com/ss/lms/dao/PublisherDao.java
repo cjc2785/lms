@@ -11,9 +11,9 @@ import com.ss.lms.entity.Publisher;
 
 public class PublisherDao {
 
-    DelimitedDoc doc;
+    private DelimitedDoc doc;
 
-    PublisherDao(DelimitedDoc doc) {
+    public PublisherDao(DelimitedDoc doc) {
         this.doc = doc;
     }
 

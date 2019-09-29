@@ -42,6 +42,7 @@ public class PublisherController implements PublisherView.Delegate {
 			break;
 		case 5:
 			view.showDelete();
+			break;
 		}
 	}
 	@Override

@@ -10,10 +10,15 @@ import com.ss.lms.entity.Publisher;
 
 public class PublisherService {
 	
-	private PublisherDao publisherDao;
 	private BookDao bookDao;
+	private PublisherDao publisherDao;
 	
-	
+
+	public PublisherService(BookDao bookDao, PublisherDao publisherDao) {
+		this.bookDao = bookDao;
+		this.publisherDao = publisherDao;
+	}
+
 	public void insert(Publisher publisher) throws IOException {
 		
 		publisherDao.insert(publisher);

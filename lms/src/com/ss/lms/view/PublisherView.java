@@ -18,7 +18,7 @@ public class PublisherView implements View {
 	
 	private Delegate delegate;
 	
-	public PublisherView(Delegate delegate) {
+	public void setDelegate(Delegate delegate) {
 		this.delegate = delegate;
 	}
 	

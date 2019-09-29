@@ -11,9 +11,9 @@ import com.ss.lms.entity.Author;
 
 public class AuthorDao {
 
-    DelimitedDoc doc;
+    private DelimitedDoc doc;
 
-    AuthorDao(DelimitedDoc authDoc) {
+    public AuthorDao(DelimitedDoc authDoc) {
         doc = authDoc;
     }
 

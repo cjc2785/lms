@@ -16,9 +16,10 @@ public class BookView implements View {
 		public void onDelete(int id);
 	}
 	
-	private Delegate delegate;
+	private Delegate delegate = null;
+
 	
-	public BookView(Delegate delegate) {
+	public void setDelegate(Delegate delegate) {
 		this.delegate = delegate;
 	}
 	

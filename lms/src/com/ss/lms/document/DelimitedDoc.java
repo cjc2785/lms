@@ -12,8 +12,8 @@ public class DelimitedDoc {
     private Document doc;
     private final String delimiter = "\\|";
 
-    public DelimitedDoc(String path) {
-        doc = new Document(path);
+    public DelimitedDoc(Document doc) {
+        this.doc = doc;
     }
 
     

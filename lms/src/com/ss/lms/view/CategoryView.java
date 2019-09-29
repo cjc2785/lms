@@ -3,15 +3,13 @@ package com.ss.lms.view;
 public class CategoryView implements View {
 	
 	private Delegate delegate;
-	
-	
-	public CategoryView(Delegate delegate) {
-		this.delegate = delegate;
-	}
-
 
 	public interface Delegate {
 		public void onCategorySelect(int num);
+	}
+	
+	public void setDelegate(Delegate delegate) {
+		this.delegate = delegate;
 	}
 	
 	

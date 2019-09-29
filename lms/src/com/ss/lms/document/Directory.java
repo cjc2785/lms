@@ -4,9 +4,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-class Directory {
+public class Directory {
 
-    String path;
+    private String path;
 
     public Directory(String dirPath) {
         path = dirPath;

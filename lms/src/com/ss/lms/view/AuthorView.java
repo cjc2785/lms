@@ -16,9 +16,9 @@ public class AuthorView implements View {
 		public void onDelete(int id);
 	}
 	
-	private Delegate delegate;
+	private Delegate delegate = null;
 	
-	public AuthorView(Delegate delegate) {
+	public void setDelegate(Delegate delegate) {
 		this.delegate = delegate;
 	}
 	
