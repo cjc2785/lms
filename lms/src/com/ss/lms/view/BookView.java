@@ -23,6 +23,8 @@ public class BookView implements View {
 		this.delegate = delegate;
 	}
 	
+	// Prompts the user to enter a book to be
+	//  fetched
 	public void showSelectForQuery() {
 		
 		System.out.println("Enter a book id: ");
@@ -49,6 +51,8 @@ public class BookView implements View {
 		}
 	}
 	
+	// Prompts the user to enter a book to be
+	//  updated
 	public void showSelectForUpdate() {
 		
 		String display = "Enter a book id: ";

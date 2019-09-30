@@ -6,6 +6,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.io.IOException;
 
+/*
+ * An object representing a file whose lines are 
+ *  fields delimited by the pipe character.
+ * 	The first field of any line of the file
+ *  must be an integer id. 
+ */
 
 public class DelimitedDoc {
 
@@ -16,7 +22,9 @@ public class DelimitedDoc {
         this.doc = doc;
     }
 
-    
+    // Returns the fields of the first line whose id field
+    //  matches the supplied id or Optional.empty if 
+    //  there is no match
     public Optional<List<String>> getLine(int id) throws IOException {
 
         String idString = Integer.toString(id);
@@ -40,9 +48,9 @@ public class DelimitedDoc {
             .collect(Collectors.toList());
     }
 
-    
-
-    //First field is used as id
+    // The integer value of the first field in the supplied 
+    //  list of fields (the id field) is all that will be matched. 
+    //  Overwrites the matched line with the new field values
     public void updateLine(List<String> fields) throws IOException {
 
         String id = fields.get(0);
@@ -56,6 +64,8 @@ public class DelimitedDoc {
         save(newLines);
     }
 
+    // The integer value of the first field in the supplied 
+    //  list of fields (the id field) is all that will be matched. 
     public void deleteLine(List<String> fields) throws IOException {
 
         String id = fields.get(0);
@@ -69,6 +79,10 @@ public class DelimitedDoc {
         save(newLines);
     }
 
+    // Sets the lines of the file to the supplied lines. Each
+    //  line should be a list of fields to be joined by the pipe
+    //  character. The first field in each line should be an 
+    //  integer id string that will be used to identify the line
     public void save(List<List<String>> lines) throws IOException {
 
         List<String> newLines = lines.stream()
@@ -79,7 +93,8 @@ public class DelimitedDoc {
   
         doc.save(newLines);
     }
-
+    
+    
     public void appendLine(List<String> line) throws IOException {
         append(List.of(line));
     }

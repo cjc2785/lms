@@ -20,6 +20,9 @@ public class BookService {
 		this.publisherDao = publisherDao;
 	}
 
+	// Throws DuplicateIdException if the book exists
+	// Throws EntityDoesNotExistException if the author or publisher
+	//	does not exist
 	public void insert(Book book) 
 			throws DuplicateIdException, EntityDoesNotExistException, IOException {
 		
@@ -41,6 +44,8 @@ public class BookService {
 		return bookDao.getAll();
 	}
 	
+	// Throws EntityDoesNotExistException if the author or publisher
+	//	does not exist
 	public void update(Book book) 
 			throws EntityDoesNotExistException, IOException {
 		
@@ -54,7 +59,8 @@ public class BookService {
 		bookDao.delete(book);
 	}
 	
-	
+	// Throws EntityDoesNotExistException if the author or publisher
+	//	does not exist
 	private void validateBookRelations(Book book) 
 			throws EntityDoesNotExistException, IOException {
 			

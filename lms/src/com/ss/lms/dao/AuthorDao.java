@@ -17,12 +17,16 @@ public class AuthorDao {
         doc = authDoc;
     }
 
+    // field 0: author id integer string
+    // field 1: author name
     private static Author fromFields(List<String> fields) {
         int id = Integer.parseInt(fields.get(0));
         String name = fields.get(1);
         return new Author(id, name);
     }
 
+    //Convert the author into string fields to be
+    // joined by the pipe character
     private static List<String> toFields(Author author) {
 
         String idField = Integer.toString(author.getId());
@@ -60,6 +64,7 @@ public class AuthorDao {
         doc.updateLine(fields);
     }
 
+    //Only depends on the id of the supplied author
     public void delete(Author author) throws IOException {
 
         List<String> fields = AuthorDao.toFields(author);

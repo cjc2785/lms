@@ -10,6 +10,7 @@ import com.ss.lms.controller.*;
 
 public class App {
 	
+	//The main method of the app
 	public static void main(String[] args) throws IOException {
 	
 		Directory dataFolder = new Directory("lmsdata");

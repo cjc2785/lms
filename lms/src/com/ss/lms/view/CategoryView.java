@@ -27,6 +27,8 @@ public class CategoryView implements View {
 		delegate.onCategorySelect(num);
 	}
 	
+	// Called after a successful action to prompt the 
+	//  user to restart the app
 	public void showWithReturnMessage() {
 		System.out.println("-----------------------------------------------------");
 		System.out.println("Action complete, press enter to return to categories");
@@ -36,6 +38,9 @@ public class CategoryView implements View {
 		show();
 	}
 	
+	// Called after an attempt to insert or update 
+	//  an entity referencing an entity that does 
+	//  not exist. Prompts the user to restart the app
 	public void showWithEntityDoesNotExist(String action, String entityName) {
 		System.out.println("Unable to " + action + ": No such " + entityName + " exists\n" + 
 				"Press enter to return to categories");
@@ -45,6 +50,9 @@ public class CategoryView implements View {
 		show();
 	}
 	
+	// Called after an attempt to insert an entity whose
+	//  id already exists. Prompts the user to 
+	//  restart the app
 	public void showWithInsertDuplicateIdMessage() {
 		
 		System.out.println("Unable to insert: IDs must be unique.\n" + 

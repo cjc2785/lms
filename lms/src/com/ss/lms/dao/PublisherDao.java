@@ -17,6 +17,9 @@ public class PublisherDao {
         this.doc = doc;
     }
 
+    // field 0: publisher id integer string
+    // field 1: publisher name 
+    // field 2: publisher address
     private static Publisher fromFields(List<String> fields) {
         int id = Integer.parseInt(fields.get(0));
         String name = fields.get(1);
@@ -24,6 +27,8 @@ public class PublisherDao {
         return new Publisher(id, name, address);
     }
 
+    //Convert the publisher into string fields to be
+    // joined by the pipe character
     private static List<String> toFields(Publisher Publisher) {
 
         return List.of(
@@ -63,6 +68,7 @@ public class PublisherDao {
         doc.updateLine(fields);
     }
 
+    // Only depends on the id of the supplied publisher
     public void delete(Publisher publisher) throws IOException {
 
         List<String> fields = PublisherDao.toFields(publisher);

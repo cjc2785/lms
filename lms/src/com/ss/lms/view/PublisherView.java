@@ -22,6 +22,8 @@ public class PublisherView implements View {
 		this.delegate = delegate;
 	}
 	
+	// Prompts the user to enter a publisher to be
+	//  fetched
 	public void showSelectForQuery() {
 		
 		System.out.println("Enter a publisher id: ");
@@ -47,6 +49,8 @@ public class PublisherView implements View {
 		}
 	}
 	
+	// Prompts the user to enter a publisher to be
+	//  updated
 	public void showSelectForUpdate() {
 		
 		String display = "Enter a publisher id: ";

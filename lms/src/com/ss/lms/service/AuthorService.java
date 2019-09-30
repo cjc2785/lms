@@ -18,7 +18,7 @@ public class AuthorService {
 		this.bookDao = bookDao;
 	}
 	
-	
+	//Throws DuplicateIdException if the author id exists
 	public void insert(Author author) 
 			throws DuplicateIdException, IOException {
 		
@@ -42,6 +42,7 @@ public class AuthorService {
 		authorDao.update(author);
 	}
 	
+	//Also deletes any books by the author
 	public void delete(Author author) throws IOException {
 		
 		bookDao.deleteAuthorBooks(author);

@@ -18,7 +18,8 @@ public class PublisherService {
 		this.bookDao = bookDao;
 		this.publisherDao = publisherDao;
 	}
-
+	
+	//Throws DuplicateIdException if the publisher exists
 	public void insert(Publisher publisher) 
 			throws DuplicateIdException, IOException {
 		
@@ -42,6 +43,7 @@ public class PublisherService {
 		publisherDao.update(publisher);
 	}
 	
+	//Also deletes any books by the publisher
 	public void delete(Publisher publisher) throws IOException {
 		bookDao.deletePublisherBooks(publisher);
 		publisherDao.delete(publisher);

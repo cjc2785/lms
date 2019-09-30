@@ -9,6 +9,11 @@ import java.nio.file.StandardOpenOption;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+/*
+ * Document is a wrapper over the java file handling APIs. A
+ * Document instance represents a text file. 
+ * 
+ */
 
 public class Document {
 
@@ -23,13 +28,11 @@ public class Document {
 		try {
 			Files.createFile(Paths.get(path));
 		} catch(FileAlreadyExistsException e) {
-			
+			//Do nothing if the file already exists
 		}
 	}
 
 	public List<String> getLines() throws IOException {
-
-
 
 		List<String> lines = Files.readAllLines(
 				Paths.get(path), 
@@ -38,10 +41,14 @@ public class Document {
 		return lines;
 	}
 	
+	//Creates the file if it does not exist
 	public void truncate() throws IOException {
 		save(List.of());
 	}
 
+	
+	//Overwrites the file
+	//Creates the file if it does not exist
 	public void save(List<String> lines) throws IOException {
 
 
@@ -55,7 +62,7 @@ public class Document {
 	}
 
 
-
+	//Creates the file if it does not exist
 	public void append(List<String> lines) throws IOException {
 
 		Files.write(

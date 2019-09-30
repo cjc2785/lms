@@ -22,6 +22,7 @@ public class AuthorView implements View {
 		this.delegate = delegate;
 	}
 	
+	// Prompts the user to enter an author to be fetched
 	public void showSelectForQuery() {
 		
 		System.out.println("Enter an author id: ");
@@ -46,6 +47,7 @@ public class AuthorView implements View {
 		}
 	}
 	
+	// Prompts the user to enter an author to be updated
 	public void showSelectForUpdate() {
 		
 		String display = "Enter an author id: ";

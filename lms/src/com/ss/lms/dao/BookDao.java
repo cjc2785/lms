@@ -18,7 +18,11 @@ public class BookDao {
     public BookDao(DelimitedDoc doc) {
         this.doc = doc;
     }
-
+    
+    // field 0: book id integer string
+    // field 1: book name
+    // field 2: book author id integer string
+    // field 3: book publisher id integer string
     private static Book fromFields(List<String> fields) {
         int id = Integer.parseInt(fields.get(0));
         String name = fields.get(1);
@@ -27,6 +31,8 @@ public class BookDao {
         return new Book(id, name, author, publisher);
     }
 
+    //Convert the book into string fields to be
+    // joined by the pipe character
     private static List<String> toFields(Book book) {
 
         return List.of(
@@ -96,6 +102,7 @@ public class BookDao {
         doc.updateLine(fields);
     }
 
+    // Only depends on the id of the supplied book
     public void delete(Book book) throws IOException {
 
         List<String> fields = BookDao.toFields(book);
