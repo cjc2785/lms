@@ -1,24 +1,24 @@
 package com.ss.lms.controller;
 
-import com.ss.lms.view.AuthorView;
+import com.ss.lms.view.BookView;
 import com.ss.lms.view.CategoryView;
-import com.ss.lms.entity.Author;
-import com.ss.lms.service.AuthorService;
-import com.ss.lms.service.DuplicateIdException;
+import com.ss.lms.entity.Book;
+import com.ss.lms.exceptions.DuplicateIdException;
+import com.ss.lms.exceptions.EntityDoesNotExistException;
+import com.ss.lms.service.BookService;
 
 import java.util.List;
 import java.util.Optional;
 import java.io.IOException;
 
-public class AuthorController implements AuthorView.Delegate {
+public class BookController implements BookView.Delegate {
 	
-
-	private AuthorView view;
+	private BookView view;
 	private CategoryView categoryView;
-	private AuthorService service;
+	private BookService service;
 	
 	
-	public AuthorController(AuthorView view, CategoryView categoryView, AuthorService service) {
+	public BookController(BookView view, CategoryView categoryView, BookService service) {
 		this.view = view;
 		this.categoryView = categoryView;
 		this.service = service;
@@ -35,29 +35,31 @@ public class AuthorController implements AuthorView.Delegate {
 			break;
 		case 3:
 			try {
-				List<Author> authors = service.getAll();
-				view.showMany(authors);
+				List<Book> books = service.getAll();
+				view.showMany(books);
 				categoryView.showWithReturnMessage();
 			} catch(IOException e) {
 				throw new RuntimeException(e);
 			}
+			
 			break;
 		case 4:
 			view.showSelectForUpdate();
 			break;
 		case 5:
 			view.showDelete();
-			break;
 		}
 	}
 	@Override
-	public void onInsert(Author author) {
+	public void onInsert(Book book) {
 		try {
-			service.insert(author);
+			service.insert(book);
 			categoryView.showWithReturnMessage();
 		} catch(DuplicateIdException e) {
 			categoryView.showWithInsertDuplicateIdMessage();
-			return;
+		} catch(EntityDoesNotExistException e) {
+			categoryView.showWithEntityDoesNotExist(
+					"insert", e.getEntity());
 		} catch(IOException e) {
 			throw new RuntimeException(e);
 		}
@@ -65,8 +67,8 @@ public class AuthorController implements AuthorView.Delegate {
 	@Override
 	public void onSelectForQuery(int id) {
 		try {
-			Optional<Author> optAuthor = service.get(id);
-			view.showOne(optAuthor);
+			Optional<Book> optBook = service.get(id);
+			view.showOne(optBook);
 			categoryView.showWithReturnMessage();
 		} catch(IOException e) {
 			throw new RuntimeException(e);
@@ -76,18 +78,21 @@ public class AuthorController implements AuthorView.Delegate {
 	@Override
 	public void onSelectForUpdate(int id) {
 		try {
-			Optional<Author> optAuthor = service.get(id);
-			view.showUpdate(optAuthor);
+			Optional<Book> optBook = service.get(id);
+			view.showUpdate(optBook);
 			categoryView.showWithReturnMessage();
 		} catch(IOException e) {
 			throw new RuntimeException(e);
 		}
 	}
 	@Override
-	public void onUpdate(Author author) {
+	public void onUpdate(Book book) {
 		try {
-			service.update(author);
+			service.update(book);
 			categoryView.showWithReturnMessage();
+		} catch(EntityDoesNotExistException e) {
+			categoryView.showWithEntityDoesNotExist(
+					"update", e.getEntity());
 		} catch(IOException e) {
 			throw new RuntimeException(e);
 		}
@@ -95,9 +100,9 @@ public class AuthorController implements AuthorView.Delegate {
 	@Override
 	public void onDelete(int id) {
 		try {
-			Optional<Author> optAuthor = service.get(id);
-			if(optAuthor.isPresent()) {
-				service.delete(optAuthor.get());
+			Optional<Book> optBook = service.get(id);
+			if(optBook.isPresent()) {
+				service.delete(optBook.get());
 			}
 			categoryView.showWithReturnMessage();
 		} catch(IOException e) {

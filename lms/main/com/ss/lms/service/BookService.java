@@ -6,6 +6,8 @@ import java.util.Optional;
 
 import com.ss.lms.dao.*;
 import com.ss.lms.entity.*;
+import com.ss.lms.exceptions.DuplicateIdException;
+import com.ss.lms.exceptions.EntityDoesNotExistException;
 
 public class BookService {
 	

@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import com.ss.lms.dao.*;
 import com.ss.lms.entity.*;
+import com.ss.lms.exceptions.DuplicateIdException;
 
 public class AuthorService {
 

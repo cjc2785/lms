@@ -1,4 +1,4 @@
-package com.ss.lms.service;
+package com.ss.lms.exceptions;
 
 /*
  * Thrown if there is an attempt to insert or update an 

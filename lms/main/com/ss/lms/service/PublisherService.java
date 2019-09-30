@@ -7,6 +7,7 @@ import java.util.Optional;
 import com.ss.lms.dao.PublisherDao;
 import com .ss.lms.dao.BookDao;
 import com.ss.lms.entity.Publisher;
+import com.ss.lms.exceptions.DuplicateIdException;
 
 public class PublisherService {
 	

@@ -1,4 +1,4 @@
-package com.ss.lms.test;
+package com.ss.lms.service;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -15,9 +15,8 @@ import com.ss.lms.document.DelimitedDoc;
 import com.ss.lms.document.Directory;
 import com.ss.lms.document.Document;
 import com.ss.lms.entity.Book;
-import com.ss.lms.service.BookService;
-import com.ss.lms.service.DuplicateIdException;
-import com.ss.lms.service.EntityDoesNotExistException;
+import com.ss.lms.exceptions.DuplicateIdException;
+import com.ss.lms.exceptions.EntityDoesNotExistException;
 
 public class BookServiceTest {
 

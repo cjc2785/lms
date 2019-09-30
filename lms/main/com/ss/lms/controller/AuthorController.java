@@ -1,28 +1,28 @@
 package com.ss.lms.controller;
 
-import com.ss.lms.view.PublisherView;
+import com.ss.lms.view.AuthorView;
 import com.ss.lms.view.CategoryView;
-import com.ss.lms.entity.Publisher;
-import com.ss.lms.service.DuplicateIdException;
-import com.ss.lms.service.PublisherService;
+import com.ss.lms.entity.Author;
+import com.ss.lms.exceptions.DuplicateIdException;
+import com.ss.lms.service.AuthorService;
 
 import java.util.List;
 import java.util.Optional;
 import java.io.IOException;
 
-public class PublisherController implements PublisherView.Delegate {
+public class AuthorController implements AuthorView.Delegate {
 	
-	private PublisherView view;
+
+	private AuthorView view;
 	private CategoryView categoryView;
-	private PublisherService service;
+	private AuthorService service;
 	
 	
-	public PublisherController(PublisherView view, CategoryView categoryView, PublisherService service) {
+	public AuthorController(AuthorView view, CategoryView categoryView, AuthorService service) {
 		this.view = view;
 		this.categoryView = categoryView;
 		this.service = service;
 	}
-	
 	
 	@Override
 	public void onActionSelect(int num) {
@@ -35,8 +35,8 @@ public class PublisherController implements PublisherView.Delegate {
 			break;
 		case 3:
 			try {
-				List<Publisher> publishers = service.getAll();
-				view.showMany(publishers);
+				List<Author> authors = service.getAll();
+				view.showMany(authors);
 				categoryView.showWithReturnMessage();
 			} catch(IOException e) {
 				throw new RuntimeException(e);
@@ -51,12 +51,13 @@ public class PublisherController implements PublisherView.Delegate {
 		}
 	}
 	@Override
-	public void onInsert(Publisher publisher) {
+	public void onInsert(Author author) {
 		try {
-			service.insert(publisher);
+			service.insert(author);
 			categoryView.showWithReturnMessage();
 		} catch(DuplicateIdException e) {
 			categoryView.showWithInsertDuplicateIdMessage();
+			return;
 		} catch(IOException e) {
 			throw new RuntimeException(e);
 		}
@@ -64,8 +65,8 @@ public class PublisherController implements PublisherView.Delegate {
 	@Override
 	public void onSelectForQuery(int id) {
 		try {
-			Optional<Publisher> optPublisher = service.get(id);
-			view.showOne(optPublisher);
+			Optional<Author> optAuthor = service.get(id);
+			view.showOne(optAuthor);
 			categoryView.showWithReturnMessage();
 		} catch(IOException e) {
 			throw new RuntimeException(e);
@@ -75,17 +76,17 @@ public class PublisherController implements PublisherView.Delegate {
 	@Override
 	public void onSelectForUpdate(int id) {
 		try {
-			Optional<Publisher> optPublisher = service.get(id);
-			view.showUpdate(optPublisher);
+			Optional<Author> optAuthor = service.get(id);
+			view.showUpdate(optAuthor);
 			categoryView.showWithReturnMessage();
 		} catch(IOException e) {
 			throw new RuntimeException(e);
 		}
 	}
 	@Override
-	public void onUpdate(Publisher publisher) {
+	public void onUpdate(Author author) {
 		try {
-			service.update(publisher);
+			service.update(author);
 			categoryView.showWithReturnMessage();
 		} catch(IOException e) {
 			throw new RuntimeException(e);
@@ -94,9 +95,9 @@ public class PublisherController implements PublisherView.Delegate {
 	@Override
 	public void onDelete(int id) {
 		try {
-			Optional<Publisher> optPublisher = service.get(id);
-			if(optPublisher.isPresent()) {
-				service.delete(optPublisher.get());
+			Optional<Author> optAuthor = service.get(id);
+			if(optAuthor.isPresent()) {
+				service.delete(optAuthor.get());
 			}
 			categoryView.showWithReturnMessage();
 		} catch(IOException e) {
